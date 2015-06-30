@@ -18,7 +18,7 @@ app.listen(80);
 console.log("server online");
 
 process.on("SIGINT", function(){
-    console.log("exiting");
+    console.log("\nexiting");
     gpio.destroy();
-    process.exit();
+    setTimeout(process.exit, 100);
 });
