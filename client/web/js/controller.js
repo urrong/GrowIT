@@ -1,65 +1,78 @@
 function httpGet(theUrl)
 {
-    var xmlHttp = new XMLHttpRequest();
-
-    xmlHttp.open( "GET", theUrl, false );
-    if (xmlHttp.readyState === 4){
-        xmlHttp.send( null );
-        if(xmlHttp.status === 200){
-            //success
-            return xmlHttp.responseText;
-        } else {
-            //error
+    $.ajax({
+        type: "GET",
+        url: theUrl,
+        dataType: "text",
+        success: function(response) {
+            return response;
+        },
+        error: function(response) {
             return "error";
         }
-    }
-    else{
-        return "error";
-    }
+    });
 }
+
+var won = false;
+var lon = false;
 
 $(document).ready(function() {
 
-    $('#start_water_button').click(function () {
+    $('#toggle_water_button').click(function () {
 
-        var response = httpGet("http://someurl.com/won");
+        var parm = "won";
+        if (won){
+            won = false;
+            parm = "woff";
+            $('#toggle_water_button').val("Turn the water on");
+        }
+        else{
+            won = true;
+            $('#toggle_water_button').val("Turn the water off");
+        }
+
+        var response = httpGet("http://someurl.com/" + parm);
         if (response === "error"){
             console.log("Error!");
         }
         else{
-            console.log("Water started!");
+            if(response === "true"){
+                console.log("Everything is OK!");
+            }
+            else if(response === "false"){
+                console.log("The action cannot be preformed!");
+            }
+
         }
 
     });
 
-    $('#stop_water_button').click(function () {
-        var response = httpGet("http://someurl.com/woff");
+    $('#toggle_light_button').click(function () {
+
+        var parm = "lon";
+        if (lon){
+            lon = false;
+            parm = "loff";
+            $('#toggle_light_button').val("Turn the light on");
+        }
+        else{
+            lon = true;
+            $('#toggle_light_button').val("Turn the light off");
+        }
+
+        var response = httpGet("http://someurl.com/" + parm);
         if (response === "error"){
             console.log("Error!");
         }
         else{
-            console.log("Water stopped!");
+            if(response === "true"){
+                console.log("Everything is OK!");
+            }
+            else if(response === "false"){
+                console.log("The action cannot be preformed!");
+            }
         }
     });
 
-    $('#camera_on_button').click(function () {
-        var response = httpGet("http://someurl.com/con");
-        if (response === "error"){
-            console.log("Error!");
-        }
-        else{
-            console.log("Camera is on!");
-        }
-    });
-
-    $('#light_on_button').click(function () {
-        var response = httpGet("http://someurl.com/lon");
-        if (response === "error"){
-            console.log("Error!");
-        }
-        else{
-            console.log("Light is on!");
-        }
-    });
 
 });
