@@ -8,7 +8,7 @@ url - url of the server
 ### Turning water on
 
 * request: url/**won**
-* resp  onse:
+* response:
     * "true" if water can be turned on
     * "false" if water can't be turned on
 
