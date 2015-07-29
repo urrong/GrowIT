@@ -5,7 +5,9 @@
   "main": "server.js",
   "dependencies": {
     "connect": "^3.4.0",
-    "rpi-gpio": "^0.5.2"
+    "pngjs": "^0.4.0",
+    "rpi-gpio": "^0.5.2",
+    "v4l2camera": "^0.4.3"
   },
   "devDependencies": {},
   "scripts": {
