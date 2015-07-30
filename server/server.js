@@ -1,8 +1,8 @@
 var gpio = require("rpi-gpio");
 var connect = require("connect");
 var serveStatic = require("serve-static");
-var v4l2camera = require("v4l2camera");
-var JPEG = require("jpeg").Jpeg;
+/*var v4l2camera = require("v4l2camera");
+var JPEG = require("jpeg").Jpeg;*/
 
 gpio.setup(8, gpio.DIR_OUT);
 app = connect();
@@ -17,12 +17,12 @@ app.use("/woff", function(req, res, next){
     res.end("True");
 });
 
-var streamResponse = null;
+/*var streamResponse = null;
 app.use("/stream.mjpg", function(req, res, next){
     console.log("client connected");
     res.writeHead(200, {"Content-type": "multipart/x-mixed-replace; boundary=--jpgboundary"});
     streamResponse = res;
-});
+});*/
 
 app.use(serveStatic(__dirname + "/public"));
 
@@ -35,7 +35,7 @@ process.on("SIGINT", function(){
     setTimeout(process.exit, 100);
 });
 
-var cam = new v4l2camera.Camera("/dev/video0");
+/*var cam = new v4l2camera.Camera("/dev/video0");
 var format = cam.configGet();
 format.width = 320;
 format.height = 240;
@@ -60,4 +60,4 @@ cam.capture(function loop(success) {
     }
     //require("fs").writeFileSync("image.jpg", image);
     cam.capture(loop);
-});
+});*/
