@@ -31,7 +31,7 @@ $(document).ready(function() {
             $('#toggle_water_button').val("Turn the water off");
         }
 
-        var response = httpGet("http://someurl.com/" + parm);
+        var response = httpGet("http://192.168.1.147:8080/" + parm);
         if (response === "error"){
             console.log("Error!");
         }
@@ -60,7 +60,7 @@ $(document).ready(function() {
             $('#toggle_light_button').val("Turn the light off");
         }
 
-        var response = httpGet("http://someurl.com/" + parm);
+        var response = httpGet("http://192.168.1.147:8080/" + parm);
         if (response === "error"){
             console.log("Error!");
         }

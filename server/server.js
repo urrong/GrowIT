@@ -5,6 +5,7 @@ var serveStatic = require("serve-static");
 var JPEG = require("jpeg").Jpeg;*/
 
 gpio.setup(8, gpio.DIR_OUT);
+gpio.setup(10, gpio.DIR_OUT);
 app = connect();
 
 app.use("/won", function(req, res, next){
@@ -14,6 +15,16 @@ app.use("/won", function(req, res, next){
 
 app.use("/woff", function(req, res, next){
     gpio.write(8, false);
+    res.end("True");
+});
+
+app.use("/lon", function(req, res, next){
+    gpio.write(10, true);
+    res.end("True");
+});
+
+app.use("/loff", function(req, res, next){
+    gpio.write(10, false);
     res.end("True");
 });
 
